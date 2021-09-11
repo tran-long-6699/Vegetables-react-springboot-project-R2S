@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	th:replace="~{fragments/layout.html :: dynamic(~{::title},~{::body})}">
+<head>
+<meta charset="UTF-8">
+<title>Forgot Password</title>
+</head>
+<body>
+	<form th:action="@{/veg/forgot/recover}" method="post">
+		<div class="col-sm-12">
+			<div class="form-group col-sm-8">
+				<input type="email" class="form-control" th:placeholder="${error} ? ${error} : 'Your email?'"
+					name="email">
+			</div>
+			<div class="col-sm-4">
+				<button class="btn btn-outline-success">Recover</button>
+			</div>
+		</div>
+	</form>
+</body>
+</html>

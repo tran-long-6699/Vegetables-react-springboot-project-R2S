@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="~{fragments/layout.html :: dynamic(~{::title},~{::body})}">
+
+<head>
+    <title>Shop</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+</head>
+
+<body class="goto-here" ng-app="app" ng-controller="cart-ctrl">
+    <div class="hero-wrap hero-bread" style="background-image: url('/images/bg_1.jpg');">
+        <div class="container">
+            <div class="row no-gutters slider-text align-items-center justify-content-center">
+                <div class="col-md-9 ftco-animate text-center">
+                    <p class="breadcrumbs">
+                        <span class="mr-2"><a th:href="@{/veg/home}">Home</a></span> <span>Shops</span>
+                    </p>
+                    <h1 class="mb-0 bread">Shop</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <section class="ftco-section">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-10 mb-5 text-center">
+                    <ul class="product-category">
+                        <li class="list active" data-filter="*"><a th:href="@{/veg/shop}">All</a></li>
+                        <th:block th:each="cat : ${categories}">
+                            <li class="list" th:data-filter="${cat.catid}"><a th:href="@{|/veg/shop/page/1/${cat.catid}|}">[[${cat.catname}]]</a></li>
+                        </th:block>
+                    </ul>
+                    Total Items: [[${totalElements}]] - Page [[${currentPage}]] of [[${totalPages}]]
+                </div>
+            </div>
+            <div class="row" ng-controller="wishlist-ctrl">
+                <th:block th:each="pro : ${products}">
+                    <div class="col-md-6 col-lg-3 ftco-animate" th:classappend="${pro.category.catid}">
+                        <div class="product add">
+                            <a th:href="@{/veg/shop/product-detail(productid=${pro.productid})}" class="img-prod"><img class="img-fluid img-thumbnail" th:src="@{|/images/product/${pro.image}|}" id="imagePd" alt="Veg Store" style="height:250px; width:250px;"> <span class="status">[[${pro.sales}]]%</span>
+                                <div class="overlay"></div>
+                            </a>
+                            <div class="text py-3 pb-4 px-3 text-center">
+                                <h3>
+                                    <a href="#">[[${pro.productname}]]</a>
+                                </h3>
+                                <div class="d-flex">
+                                    <div class="pricing">
+                                        <p class="price">
+                                            <span class="mr-2 price-dc" th:if="${pro.sales} >0">[[${pro.priceaverage}]]</span><span class="price-sale">[[${pro.priceaverage} - (${pro.priceaverage} * ${pro.sales})]]</span>
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="bottom-area d-flex px-3">
+                                    <div class="m-auto d-flex">
+                                        <a href="#" th:href="@{/veg/shop/product-detail(productid=${pro.productid})}" class="buy-now d-flex justify-content-center align-items-center mx-1">
+                                            <span><i class="ion-ios-cart"></i></span>
+                                        </a>
+                                        <a style="cursor: pointer;" id="addtoWl" th:attr="ng-click='wishlistadd(\''+${pro.productid}+'\');'" class="heart d-flex justify-content-center align-items-center ">
+                                            <span><i class="ion-ios-heart"></i></span>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <th:block>
+
+            </div>
+            <div class="row mt-5">
+                <div class="col text-center">
+                    <div class="block-27">
+                        <ul>
+                            <li><a th:if="${currentPage > 1}" th:href="@{/veg/shop/page/1}">&lt;</a></li>
+                            <li><span th:unless="${currentPage > 1}"><a>&lt;</a></span></li>
+                            <th:block th:each="i : ${#numbers.sequence(1, totalPages)}">
+                                <li><a th:if="${i != currentPage}" th:href="@{|/veg/shop/page/${i}|}" class="active">[[${i}]]</a></li>
+                                <li class="active"><span th:unless="${i != currentPage}"><a>[[${i}]]</a></span></li>
+                            </th:block>
+                            <li><a th:if="${currentPage < totalPages}" th:href="@{|/veg/shop/page/${totalPages}|}">&gt;</a></li>
+                            <li><span th:unless="${currentPage < totalPages}"><a>&lt;</a></span></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+
+</html>

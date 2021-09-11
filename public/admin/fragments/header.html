@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	  xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<th:block th:fragment="header">
+		<div class="py-1 bg-primary">
+		<div class="container">
+			<div class="row no-gutters d-flex align-items-start align-items-center px-md-0">
+				<div class="col-lg-12 d-block">
+					<div class="row d-flex">
+						<div class="col-md pr-4 d-flex topper align-items-center">
+							<div class="icon mr-2 d-flex justify-content-center align-items-center"><span
+									class="icon-phone2"></span></div>
+							<span class="text">070.2362.611</span>
+						</div>
+						<div class="col-md pr-4 d-flex topper align-items-center">
+							<div class="icon mr-2 d-flex justify-content-center align-items-center"><span
+									class="icon-paper-plane"></span></div>
+							<span class="text">longtpc01189@fpt.edu.vn</span>
+						</div>
+						<div class="col-md-5 pr-4 d-flex topper align-items-center text-lg-right">
+							<span class="text">2-3 Business days delivery &amp; Free Returns</span>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
+		<div class="container">
+			<a class="navbar-brand" th:href="@{/veg/home}">Vegetables <small> Store</small></a>
+			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav"
+				aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="oi oi-menu"></span> Menu
+			</button>
+
+			<div class="collapse navbar-collapse" id="ftco-nav">
+				<ul class="navbar-nav ml-auto">
+					<li class="nav-item"><a th:href="@{/veg/home}" class="nav-link">Home</a></li>
+					<li class="nav-item active dropdown">
+						<a class="nav-link dropdown-toggle" href="#" id="dropdown04" data-toggle="dropdown"
+							aria-haspopup="true" aria-expanded="false">Shop</a>
+						<div class="dropdown-menu" aria-labelledby="dropdown04">
+							<a class="dropdown-item" th:href="@{/veg/shop}">Shop</a>
+							<a class="dropdown-item" th:href="@{/veg/shop/cart}" sec:authorize="isAuthenticated()">Cart</a>
+							<a class="dropdown-item" th:href="@{/veg/shop/checkout}" sec:authorize="isAuthenticated()">Checkout</a>
+						</div>
+					</li>
+					<li class="nav-item"><a th:href="@{/veg/about}" class="nav-link">About</a></li>
+					<li class="nav-item"><a th:href="@{/veg/blog}" class="nav-link">Blog</a></li>
+					<li class="nav-item"><a th:href="@{/veg/contact}" class="nav-link">Contact</a></li>
+					<li class="nav-item cta cta-colored iconShopping">
+						<a th:href="@{/veg/shop/cart}" class="nav-link" sec:authorize="isAuthenticated()">
+							<span class="icon-shopping_cart"></span>[{{cart.count}}] - {{cart.amount | number:0}}</a></li>
+					<li sec:authorize="!isAuthenticated()" class="nav-item">
+						<span class="nav-link"><a th:href="@{/veg/login}" >Login</a> /<a th:href="@{/veg/signup}">Sign Up</a></span>
+					</li> 
+					<li sec:authorize="isAuthenticated()" class="nav-item active dropdown">
+						<a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown"
+							aria-haspopup="true" aria-expanded="false" sec:authentication="name"><label id="user">[[${#request.remoteUser}]]</label></a>
+							
+						<div class="dropdown-menu" aria-labelledby="dropdown04">
+							<a class="dropdown-item" th:href="@{/veg/shop}">Edit profile</a>
+							<a class="dropdown-item" th:href="@{/veg/shop/wishlist}">Change password</a>
+							<a class="dropdown-item" th:href="@{/veg/shop/cart}">Wish list</a>
+							<a class="dropdown-item" th:href="@{/veg/shop/checkout}">Logout</a>
+						</div>
+						
+					</li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+	</th:block>
+</body>
+</html>

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+th:replace="~{fragments/layout.html :: dynamic(~{::title},~{::body})}">
+<head>
+<title>Login</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link
+	href="https://as1.ftcdn.net/jpg/02/67/54/94/500_F_267549416_zTrBC52pr6s4zmbc9UKUmZ3tEUnXXhJM.jpg"
+	rel="icon">
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+	integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z"
+	crossorigin="anonymous">
+<link rel="stylesheet" type="text/css" th:href="@{/css/login.css}">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+</head>
+<body>
+	<div class="container">
+		<!--login form -->
+		<div id="login" class="row col-lg-12 col-md-12 col-sm-12 col-12">
+			<div class="col-lg-6 col-md-6">
+				<img class="pic-login-2 img-thumbnail" th:src="@{/images/background/login.jpg}">
+			</div>
+			<div class="col-lg-5 col-md-6 col-sm-12 col-12 login-form">
+				<form th:action="@{/j_spring_security_check}" method="post">
+					<h4>Welcome You!</h4>
+					<div class="form-group">
+						<input type="email" class="form-control form-control-lg inplog"
+							placeholder="Username?" name="username"
+							autofocus="autofocus" id="username" required="required">	
+					</div>
+
+					<div class="form-group">
+						<input type="password" class="form-control form-control-lg inplog"
+							placeholder="Password?" name="password"
+							id="password1" required="required" ondblclick="hideshow()">
+							<i class="fa fa-user-o"></i>
+					</div>
+
+					<div class="remember-forgot-div">
+						 <a href="/veg/forgot">Forgot password?</a>
+					</div>
+					<div class="login-btn">
+						<button class="btn btn-primary" type="submit" style="width:100%">Login</button>
+					</div>
+					<div class="mt-3">
+						<div class="row ml-3"><a th:href="@{/oauth2/authorization/google}" class="btn btn-outline-success ml-5 w-75"><i class="fab fa-google-plus-g"></i>Continue with Google</a></div>
+						<div class="row mt-3 ml-3"><a th:href="@{/oauth2/authorization/facebook}" class="btn btn-outline-primary ml-5 w-75 mb-3"><i class="fab fa-facebook-f"></i>Continue with Facebook</a></div>
+					</div>
+					
+				</form>
+			</div>
+
+		</div>
+
+	</div>
+
+	<script th:src="@{https://code.jquery.com/jquery-3.5.1.slim.min.js}"
+		integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+		crossorigin="anonymous"></script>
+
+	<script
+		th:src="@{https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js}"
+		integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+		crossorigin="anonymous"></script>
+
+	<script
+		th:src="@{https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js}"
+		integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
+		crossorigin="anonymous"></script>
+
+	<!-- <script type="text/javascript" th:src="@{/js/login.js}"></script> -->
+	<script>
+		function hideshow() {
+			var password = document.getElementById("password1");
+			var slash = document.getElementById("slash");
+			var eye = document.getElementById("eye");
+
+			if (password.type === 'password') {
+				password.type = "text";
+				slash.style.display = "block";
+				eye.style.display = "none";
+			} else {
+				password.type = "password";
+				slash.style.display = "none";
+				eye.style.display = "block";
+			}
+
+		}
+	</script>
+</body>
+</html>

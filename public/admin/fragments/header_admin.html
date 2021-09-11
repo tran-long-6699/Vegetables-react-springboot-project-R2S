@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body>
+	<div th:fragment="header_admin" ng-app="admin-app">
+		<div class="col-md-3 left_col">
+				<div class="left_col scroll-view">
+					<div class="navbar nav_title" style="border: 0;">
+						<a href="index" class="site_title"><i class="fa fa-diamond"></i> <span>Manager</span></a>
+					</div>
+
+					<div class="clearfix"></div>
+
+					<!-- menu profile quick info -->
+					<div class="profile clearfix">
+						<div class="profile_pic">
+							<img th:src="@{/images/manager/}+${image}" alt="..." class="img-circle profile_img">
+						</div>
+						<div class="profile_info">
+							<span>Welcome,</span>
+							<h2>[[${name}]]</h2>
+						</div>
+					</div>
+					<!-- /menu profile quick info -->
+
+					<br />
+
+					<!-- sidebar menu -->
+					<div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
+						<div class="menu_section">
+							<ul class="nav side-menu">
+								<li><a><i class="fa fa-home"></i>Home <span class="fa fa-chevron-down"></span></a>
+									<ul class="nav child_menu">
+										<li><a href="/veg/home">Home Page</a></li>
+										<li><a href="/veg/admin/home">Home Admin Page</a></li>
+									</ul>
+								</li>				
+								<li><a><i class="fa fa-grav"></i>Provider<span class="fa fa-chevron-down"></span></a>
+									<ul class="nav child_menu">
+										<li><a href="/veg/admin/#!provider">Provide</a></li>
+										<li><a href="/veg/admin/supplier">Supplier</a></li>
+									</ul>
+								</li>							
+								<li><a><i class="fa fa-edit"></i>Product<span class="fa fa-chevron-down"></span></a>
+									<ul class="nav child_menu">
+										<li><a href="/veg/admin/category">Category</a></li>
+										<li><a href="/veg/admin/product">Product</a></li>
+										<li><a href="/veg/admin/sizeproduct">Size Division</a></li>
+									</ul>
+								</li>
+								<li><a><i class="fa fa-user-circle-o"></i>Customer<span class="fa fa-chevron-down"></span></a>
+									<ul class="nav child_menu">
+										<li><a href="/veg/admin/customer">Customer</a></li>
+									</ul>
+								</li>
+								<li><a><i class="fa fa-user-circle"></i>Employee<span class="fa fa-chevron-down"></span></a>
+									<ul class="nav child_menu">
+										<li><a href="/rcm/admin/employee">[[#{admin.empchild1}]]</a></li>
+										<li><a href="/rcm/admin/salemp">[[#{admin.empchild2}]]</a></li>
+										<li><a href="/rcm/admin/inforemp">[[#{admin.empchild3}]]</a></li>
+									</ul>
+								</li>
+								<li><a><i class="fa fa-bar-chart-o"></i>Statistical<span class="fa fa-chevron-down"></span></a>
+									<ul class="nav child_menu">
+										<li><a href="/veg/admin/statistical">Statistical</a></li>
+									</ul>
+								</li>
+							</ul>
+						</div>
+						
+
+					</div>
+					<!-- /sidebar menu -->
+
+				</div>
+			</div>
+
+			<!-- top navigation -->
+			<div class="top_nav">
+				<div class="nav_menu">
+					<div class="nav toggle">
+						<a id="menu_toggle"><i class="fa fa-bars"></i></a>
+					</div>
+					<nav class="nav navbar-nav">
+						<ul class=" navbar-right">
+							<li class="nav-item dropdown open" style="padding-left: 15px;">
+								<a href="javascript:;" class="user-profile dropdown-toggle" aria-haspopup="true" id="navbarDropdown" data-toggle="dropdown" aria-expanded="false">
+									<img th:src="@{/img/manager/}+${image}" alt="">[[${name}]]
+								</a>
+								<div class="dropdown-menu dropdown-usermenu pull-right" aria-labelledby="navbarDropdown">
+									<a class="dropdown-item" href="javascript:;" th:href="@{/rcm/editprofile}">
+										<i class="fa fa-user pull-right"></i>
+										<span>[[#{admin.profile}]]</span>
+									</a>
+									<a class="dropdown-item" href="javascript:;" th:href="@{/rcm/changepwd}">
+										<i class="fa fa-expeditedssl pull-right"></i><span>[[#{admin.password}]]</span>
+									</a>
+									<a class="dropdown-item" href="/rcm/logout"><i class="fa fa-sign-out pull-right"></i>
+										<span>[[#{admin.logout}]]</span>
+									</a>
+								</div>
+							</li>
+
+						</ul>
+					</nav>
+				</div>
+			</div>
+			<!-- /top navigation -->
+	</div>
+</body>
+</html>

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:fragment="dynamic(title,view)">
+
+<head>
+    <meta charset="UTF-8">
+
+    <title th:replace="${title}"></title>
+    <th:block th:insert="~{fragments/ScriptAndCss :: link}"></th:block>
+    <th:block th:insert="~{fragments/ScriptAndCss :: head/script}"></th:block>
+    <link href="https://image.flaticon.com/icons/png/128/1617/1617578.png" rel="icon">
+</head>
+
+<body>
+    <th:block th:insert="~{fragments/header}"></th:block>
+
+    <main th:replace="${view}"></main>
+
+    <th:block th:insert="~{fragments/footer}"></th:block>
+    <th:block th:insert="~{fragments/ScriptAndCss :: js}"></th:block>
+</body>
+
+</html>

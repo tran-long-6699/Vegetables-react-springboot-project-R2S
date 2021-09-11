@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Registration</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<!-- Meta, title, CSS, favicons, etc. -->
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.0.1/css/bootstrap.min.css" integrity="sha512-Ez0cGzNzHR1tYAv56860NLspgUGuQw16GiOOp/I2LuTmpSK9xDXlgJz3XN4cnpXWDmkNBKXR/VDMTCnAaEooxA==" crossorigin="anonymous" referrerpolicy="no-referrer"/>    <!-- MATERIAL DESIGN ICONIC FONT -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/material-design-iconic-font/2.2.0/css/material-design-iconic-font.min.css" integrity="sha512-rRQtF4V2wtAvXsou4iUAs2kXHi3Lj9NE7xJR77DE7GHsxgY9RTWy93dzMXgDIG8ToiRTD45VsDNdTiUagOFeZA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- STYLE CSS -->
+    <link rel="stylesheet" href="/css/registration.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+    <style>
+    	
+    </style>
+</head>
+
+<body ng-app="signup-app" ng-controller="signup-ctrl">
+
+    <div class="wrapper" style="background-image: url('/images/background/bg-registration-form-3.jpg');">
+        <div class="inner">
+            <form method="post" name="myForm" class="needs-validation">
+                <h3>Registration Form / <a th:href="@{/veg/home}" class="home">Home</a></h3>
+                <div class="form-group" style="text-align:center; margin-left: 30%;">
+                	<div class="form-wrapper">
+                		<label for="selectImg"><img ng-src="{{'/images/user/'+form.image}}" style="width:200px; height: 200px;"></label>
+                		<input ng-hide="true" type="file" name="file" id="selectImg" accept="images/*"
+                		onchange="angular.element(this).scope().upload(this.files)" ng-blur="checkimage()">
+                	</div>
+                </div>
+                
+                <div class="form-group">
+                    <div class="form-wrapper">
+                        <label for="email">Email:</label>
+                        <div class="form-holder">
+                            <i class="zmdi zmdi-email"></i>
+                            <input type="text" id="email" class="form-control" ng-model="form.email" placeholder="Email?" autofocus="autofocus"
+                             required="required" ng-blur="checkemail()">
+                        	<div id="invalid-email" style="color: red;"></div>
+                        </div>
+                    </div>
+                    <div class="form-wrapper">
+                        <label for="address">Address:</label>
+                        <div class="form-holder">
+                            <i class="zmdi zmdi-pin-drop"></i>
+                            <input type="text" class="form-control" ng-model="form.address" required="required" id="address"
+                             placeholder="Address?" ng-blur="checkaddress()">
+                        </div>
+                        <div id="invalid-address" style="color: red;"></div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="form-wrapper">
+                        <label for="">Password:</label>
+                        <div class="form-holder">
+                            <i class="zmdi zmdi-lock-outline"></i>
+                            <input type="password" class="form-control" placeholder="********" id="password" ng-blur="checkpassword()"
+                            ng-model="form.password" required="required">
+                        </div>
+                        <div id="invalid-password" style="color: red;"></div>
+                    </div>
+                    <div class="form-wrapper">
+                        <label for="">Repeat Password:</label>
+                        <div class="form-holder">
+                            <i class="zmdi zmdi-lock-outline"></i>
+                            <input type="password" class="form-control" ng-model="repassword" placeholder="********"
+                             ng-blur="validatePassword()" id="repassword" required="required">
+                        </div>
+                        <div id="invalid-repassword" style="color: red;"></div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="form-wrapper">
+                       <label for="fullname">Fullname:</label>
+                        <div class="form-holder">
+                            <i class="zmdi zmdi zmdi-account-o"></i>
+                            <input type="text" class="form-control" placeholder="Fullname?" ng-model="form.fullname" id="fullname"
+                            required="required" ng-blur="checkfullname()"> 
+                        </div>
+                        <div id="invalid-fullname" style="color: red;"></div>
+                    </div>
+                    <div class="form-wrapper">
+                        <label for="">Gender:</label>
+                        <div class="form-holder select">
+                            <select name="" id="" class="form-control" ng-model="form.gender">
+									<option value="true">Male</option>
+									<option value="false">Female</option>
+								</select>
+                            <i class="zmdi zmdi-face"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+					<div class="form-wrapper has-validation">
+						<label for="">Phone</label>
+						<div class="form-holder">
+							<i class="zmdi zmdi-phone-in-talk"></i> <input type="text" id="phone"
+								class="form-control" placeholder="Phone?" ng-model="form.phone" required="required" ng-blur="checkphone()">
+						</div>
+						<div id="invalid-phone" style="color: red;"></div>
+					</div>
+					<div class="form-wrapper">
+						<label for="date">Birthday</label>
+						<div class="form-holder">
+							<i class="zmdi zmdi-cake"></i> 
+							<input type="date" id="date" ng-blur="checkdate()"
+								class="form-control" ng-model="form.birthday" required="required">
+						</div>
+						<div id="invalid-date" style="color: red;"></div>
+					</div>
+				</div>
+                
+                <div class="form-end"> 
+                    <div class="checkbox">
+                        <label>
+								<input type="checkbox" checked="checked" id="agree" ng-click="checkstick()"><small id="text">I agree to the subscription terms.</small>
+								<span class="checkmark"></span>
+							</label>
+                    </div>
+                    <div class="button-holder">
+                        <button ng-click="signup()">Register Now</button>
+                    </div>
+
+                </div>
+            </form>
+        </div>
+    </div>
+<script th:src="@{/js/signup.js}"></script>
+
+<script>
+(function() {
+    'use strict'
+
+    // Fetch all the forms we want to apply custom Bootstrap validation styles to
+    var forms = document.querySelectorAll('.needs-validation')
+
+    // Loop over them and prevent submission
+    Array.prototype.slice.call(forms)
+        .forEach(function(form) {
+            form.addEventListener('submit', function(event) {
+                if (!form.checkValidity()) {
+                    event.preventDefault()
+                    event.stopPropagation()
+                }
+
+                form.classList.add('was-validated')
+            }, false)
+        })
+})()
+</script>
+
+</body>
+</html>
