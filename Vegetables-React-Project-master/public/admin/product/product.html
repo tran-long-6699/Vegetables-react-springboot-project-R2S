@@ -1,0 +1,166 @@
+<body class="nav-md">
+    <div class="container body">
+        <div class="main_container">
+            <div class="right_col" role="main">
+                <div class="">
+                    <div class="clearfix"></div>
+
+                    <div class="row">
+                        <div class="col-md-12 col-sm-12">
+                            <div class="x_panel">
+                                <div class="x_title">
+                                    <h2>
+                                        <small>Product display board</small>
+                                    </h2>
+                                    <ul class="nav navbar-right panel_toolbox">
+                                        <li><a class="collapse-link"><i
+												class="fa fa-chevron-up"></i></a></li>
+                                        <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i
+												class="fa fa-wrench"></i></a>
+                                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                                <a class="dropdown-item" href="#">Settings 1</a> <a class="dropdown-item" href="#">Settings 2</a>
+                                            </div>
+                                        </li>
+                                        <li><a class="close-link"><i class="fa fa-close"></i></a>
+                                        </li>
+                                    </ul>
+                                    <div class="clearfix"></div>
+                                </div>
+                                <div class="x_content">
+                                    <form method="post" enctype="multipart/form-data" class="was-validated" name="myForm">
+
+                                        <div class="field item form-group">
+                                            <div class="col-md-12 col-sm-12 text-center">
+                                                <label for="selectImg"><img
+													style="width: 200px; height: 200px;" loading="lazy"
+													class="img-thumbnail" ng-src="{{'/images/product/'+form.image}}"></label> <label>
+													<input type="file" accept="images/*" 
+													ng-hide="true" id="selectImg"
+													onchange="angular.element(this).scope().upload(this.files)" />
+												</label>
+                                            </div>
+                                        </div>
+
+                                        <div class="field item form-group" ng-hide="editForm">
+                                            <label class="col-form-label col-md-3 col-sm-3  label-align">Product
+												Id<span class="required">*</span>
+											</label>
+                                            <div class="col-md-6 col-sm-6">
+                                                <select ng-model="form.productid" class="form-control" ng-change="changes()">
+													<option ng-repeat="(key, id) in pdids"
+														value="{{id.pdqtyid}}">{{id.pdqtyid}}</option>
+												</select>
+                                            </div>
+                                        </div>
+
+                                        <div class="field item form-group" ng-hide="!editForm">
+                                            <label class="col-form-label col-md-3 col-sm-3  label-align">Product
+												Id<span class="required">*</span>
+											</label>
+                                            <div class="col-md-6 col-sm-6">
+                                                <input class="form-control" ng-model="form.productid" ng-readonly="true">
+                                            </div>
+                                        </div>
+
+                                        <div class="field item form-group">
+                                            <label class="col-form-label col-md-3 col-sm-3  label-align">Product
+												Name<span class="required">*</span>
+											</label>
+                                            <div class="col-md-6 col-sm-6">
+                                                <input class="form-control" ng-model="form.productname" required="required" />
+                                            </div>
+                                        </div>
+
+                                        <div class="field item form-group">
+                                            <label class="col-form-label col-md-3 col-sm-3  label-align">Category<span
+												class="required">*</span></label>
+                                            <div class="col-md-6 col-sm-6">
+                                                <select class="form-control" ng-model="form.categoryid">
+													<option ng-repeat="(key, ctg) in cats"
+														value="{{ctg.catid}}">{{ctg.catname}}</option>
+												</select>
+                                            </div>
+                                        </div>
+
+                                        <div class="field item form-group">
+                                            <label class="col-form-label col-md-3 col-sm-3  label-align">Measure<span
+												class="required">*</span></label>
+                                            <div class="col-md-6 col-sm-6">
+                                                <select class="form-control" ng-model="form.measure" ng-disabled="cascadeById">
+													<option ng-repeat="(key, mete) in metes"
+														value="{{mete.measureid}}">{{mete.measureid}} -
+														{{mete.name}}</option>
+												</select>
+                                            </div>
+                                        </div>
+
+                                        <div class="field item form-group">
+                                            <label class="col-form-label col-md-3 col-sm-3  label-align">Price
+												Average<span class="required">*</span>
+											</label>
+                                            <div class="col-md-6 col-sm-6">
+                                                <input class="form-control" placeholder="Price Average" required="required" type="number" ng-model="form.priceaverage" min="1000" autofocus="autofocus" />
+                                            </div>
+                                        </div>
+
+                                        <div class="field item form-group">
+                                            <label class="col-form-label col-md-3 col-sm-3  label-align">Description</label>
+                                            <div class="col-md-6 col-sm-6">
+                                                <input class="form-control" ng-model="form.description" placeholder="Description" />
+                                            </div>
+                                        </div>
+                                        <div class="ln_solid">
+                                            <div class="form-group">
+                                                <div class="col-md-6 offset-md-3">
+                                                    <button ng-click="create()" class="btn btn-outline-info" ng-disabled="myForm.$invalid || myForm.$pending || editForm">Insert</button>
+                                                    <button ng-click="update()" class="btn btn-success" ng-disabled="!editForm">Update</button>
+                                                    <button ng-click="delete(key)" class="btn btn-outline-danger" ng-disabled="!editForm">Delete</button>
+                                                    <button ng-click="reset()" class="btn btn-outline-warning" ng-disabled="!editForm">Reset</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="">
+                    <div class="clearfix"></div>
+                    <div class="col-md-12 col-sm-12 ">
+                        <div class="x_panel">
+                            <div class="x_title">
+                                <h2>
+                                    Manager: <small>{{user.fullname}}</small>
+                                </h2>
+                                <ul class="nav navbar-right panel_toolbox">
+                                    <li><a class="collapse-link"><i
+											class="fa fa-chevron-up"></i></a></li>
+                                    <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i
+											class="fa fa-wrench"></i></a>
+                                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                            <a class="dropdown-item" href="#">Settings 1</a> <a class="dropdown-item" href="#">Settings 2</a>
+                                        </div>
+                                    </li>
+                                    <li><a class="close-link"><i class="fa fa-close"></i></a>
+                                    </li>
+                                </ul>
+                                <div class="clearfix"></div>
+                            </div>
+                            <div class="x_content">
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <div class="card-box table-responsive">
+                                            <p class="text-muted font-13 m-b-30">Product information display board</p>
+                                            <table id="pd-table" class="table table-hover"></table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>

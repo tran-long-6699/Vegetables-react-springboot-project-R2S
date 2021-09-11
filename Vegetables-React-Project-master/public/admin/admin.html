@@ -1,0 +1,202 @@
+<div class="container body">
+    <div class="main_container">
+        <div class="col-md-3 left_col">
+            <div class="left_col scroll-view">
+                <div class="navbar nav_title" style="border: 0;">
+                    <a href="/veg/admin/home" class="site_title"><i class="fa fa-leaf"></i> <span>Manager</span></a>
+                </div>
+
+                <div class="clearfix"></div>
+
+                <!-- menu profile quick info -->
+                <div class="profile clearfix">
+                    <div class="profile_pic">
+                        <img ng-src="{{image}}" class="img-circle profile_img">
+                    </div>
+                    <div class="profile_info">
+                        <span>Welcome,</span>
+                        <h2>{{user.fullname}}</h2>
+                    </div>
+                </div>
+                <!-- /menu profile quick info -->
+
+                <br />
+
+                <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
+                    <div class="menu_section">
+                        <ul class="nav side-menu">
+                            <li class="nav-item dropdown mb-2" style="font-size: 17px;">
+                                <span class="nav-link dropdown-toggle" style="color:white;" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <i class="fa fa-home"></i>Home
+                                </span>
+                                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" ui-sref=".veghome">Home Page</a>
+                                    <a class="dropdown-item" ui-sref=".">Home Admin Page</a>
+                                </div>
+                            </li>
+
+                            <li class="nav-item dropdown mb-2" style="font-size: 17px;">
+                                <span class="nav-link dropdown-toggle" style="color:white;" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <i class="fa fa-grav"></i>Provider
+                                </span>
+                                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" ui-sref=".provider">Provide</a>
+                                    <a class="dropdown-item" ui-sref=".supplier">Supplier</a>
+                                </div>
+                            </li>
+
+                            <li class="nav-item dropdown mb-2" style="font-size: 17px;">
+                                <span class="nav-link dropdown-toggle" style="color:white;" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <i class="fa fa-edit"></i>Product
+                                </span>
+                                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" ui-sref=".category">Category</a>
+                                    <a class="dropdown-item" ui-sref=".product">Product</a>
+                                    <a class="dropdown-item" ui-sref=".sizeproduct">Size Division</a>
+                                </div>
+                            </li>
+
+                            <li class="nav-item dropdown mb-2" style="font-size: 17px;">
+                                <span class="nav-link dropdown-toggle" style="color:white;" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <i class="fa fa-user-o"></i>Authority
+                                </span>
+                                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" ui-sref=".authority">Authorizing</a>
+                                </div>
+                            </li>
+
+                            <li class="nav-item dropdown mb-2" style="font-size: 17px;">
+                                <span class="nav-link dropdown-toggle" style="color:white" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <i class="fa fa-bar-chart-o"></i>Statistical
+                                </span>
+                                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" ui-sref=".statistical">Statistical</a>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- top navigation -->
+        <div class="top_nav">
+            <div class="nav_menu">
+                <div class="nav toggle">
+                    <a id="menu_toggle"><i class="fa fa-bars"></i></a>
+                </div>
+                <nav class="nav navbar-nav">
+                    <ul class=" navbar-right">
+                        <li class="nav-item dropdown open" style="padding-left: 15px;">
+                            <a href="javascript:;" class="user-profile dropdown-toggle" aria-haspopup="true" id="navbarDropdown" data-toggle="dropdown" aria-expanded="false">
+                                <img ng-src="{{image}}" alt="">{{user.fullname}}
+                            </a>
+                            <div class="dropdown-menu dropdown-usermenu pull-right" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" ui-sref=".editprofile"> <i class="fa fa-user pull-right"></i> <span>Profile</span>
+                                </a>
+                                <a class="dropdown-item" ui-sref=".logoff"><i
+                                    class="fa fa-sign-out pull-right"></i> <span>Logout</span> </a>
+                            </div>
+                        </li>
+
+                    </ul>
+                </nav>
+            </div>
+        </div>
+        <!-- /top navigation -->
+
+        <!-- page content -->
+        <main>
+            <div class="container body">
+                <div class="main_container">
+                    <div class="right_col" role="main">
+                        <div class="row">
+                            <div class="col-md-12 col-sm-12">
+                                <div class="tile_count">
+                                    <div class=" col-sm-3  tile_stats_count">
+                                        <span class="count_top"><i class="fa fa-user"></i>User</span>
+                                        <div class="count">
+                                            <span style="font-size: 25px;">Total User: {{infor.total}}</span>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-3  tile_stats_count">
+                                        <span class="count_top"><i class="fa fa-user"></i>Male</span>
+                                        <div class="count green">
+                                            <span style="font-size: 25px;">Total Male: {{infor.totalmale}}</span>
+                                        </div>
+                                    </div>
+                                    <div class=" col-sm-3  tile_stats_count">
+                                        <span class="count_top"><i class="fa fa-user"></i>Female</span>
+                                        <div class="count">
+                                            <span style="font-size: 25px;">Total Female: {{infor.totalfemale}}</span>
+                                        </div>
+                                    </div>
+                                    <div class=" col-sm-3  tile_stats_count">
+                                        <span class="count_top"><i class="fa fa-lock"></i>Locked</span>
+                                        <div class="count">
+                                            <span style="font-size: 25px;">Account's Locked: {{infor.totalblock}}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12 col-sm-12 ">
+                                <div class="x_panel ">
+                                    <div class="x_title">
+                                        <h2>
+                                            <small>The chart shows the number of products</small>
+                                        </h2>
+                                        <ul class="nav navbar-right panel_toolbox">
+                                            <li><a class="collapse-link"><i
+                                                        class="fa fa-chevron-up"></i></a></li>
+                                            <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i
+                                                        class="fa fa-wrench"></i></a>
+                                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                                    <a class="dropdown-item" href="#">Settings 1</a> <a class="dropdown-item" href="#">Settings 2</a>
+                                                </div>
+                                            </li>
+                                            <li><a class="close-link"><i class="fa fa-close"></i></a>
+                                            </li>
+                                        </ul>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                    <div class="x_content">
+                                        <div class="widget_summary" ng-repeat="c in chart">
+                                            <div class="w_left w_25">
+                                                <span>{{c.productid}} - <b>{{c.productname}}</b></span>
+                                            </div>
+                                            <div class="w_center w_55">
+                                                <div class="progress">
+                                                    <div class="progress-bar bg-green" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" ng-style="{'width': +((c.sold/c.total)*100)+'%'}">
+                                                        <span class="sr-only">60% Complete</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="w_right w_20">
+                                                <span>{{c.sold}} peace</span>
+                                            </div>
+                                            <div class="clearfix"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div ui-view></div>
+        </main>
+        <!-- /page content -->
+
+        <!-- footer content -->
+        <footer>
+            <div class="pull-right">
+                VegStore - Template coppyright <a href="https://colorlib.com">Colorlib</a>
+            </div>
+            <div class="clearfix"></div>
+        </footer>
+        <!-- /footer content -->
+    </div>
+</div>

@@ -1,0 +1,121 @@
+<body class="nav-md">
+    <div class="container body">
+        <div class="main_container">
+            <div class="right_col" role="main">
+                <div class="">
+                    <div class="clearfix"></div>
+                    <div class="row">
+                        <div class="col-md-12 col-sm-12">
+                            <div class="x_panel">
+                                <div class="x_title">
+                                    <h2>
+                                        <small>Display product supplier information</small>
+                                    </h2>
+                                    <ul class="nav navbar-right panel_toolbox">
+                                        <li><a class="collapse-link"><i
+												class="fa fa-chevron-up"></i></a></li>
+                                        <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i
+												class="fa fa-wrench"></i></a>
+                                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                                <a class="dropdown-item" href="#">Settings 1</a> <a class="dropdown-item" href="#">Settings 2</a>
+                                            </div>
+                                        </li>
+                                        <li><a class="close-link"><i class="fa fa-close"></i></a>
+                                        </li>
+                                    </ul>
+                                    <div class="clearfix"></div>
+                                </div>
+                                <div class="x_content">
+                                    <form method="post" class="was-validated" name="myForm">
+                                        <div class="field item form-group">
+                                            <label class="col-form-label col-md-3 col-sm-3  label-align">Provider
+												id<span class="required">*</span>
+											</label>
+                                            <div class="col-md-6 col-sm-6">
+                                                <input class="form-control" id="providerid" autofocus="autofocus" ng-model="form.providerid" placeholder="Provider Id" required="required" ng-blur="checkId()" />
+                                            </div>
+                                            <div id="id-invalid" style="color:red;"></div>
+                                        </div>
+
+                                        <div class="field item form-group">
+                                            <label class="col-form-label col-md-3 col-sm-3  label-align">Provider
+												name<span class="required">*</span>
+											</label>
+                                            <div class="col-md-6 col-sm-6">
+                                                <input class="form-control" type="tel" required='required' th:placeholder="'Provider name'" ng-model="form.providername" />
+                                            </div>
+                                        </div>
+
+
+                                        <div class="field item form-group">
+                                            <label class="col-form-label col-md-3 col-sm-3  label-align">Phone<span
+												class="required">*</span></label>
+                                            <div class="col-md-6 col-sm-6">
+                                                <input class="form-control" type="tel" required='required' ng-model="form.phone" placeholder="Phone?" data-toggle="tooltip" id="phone" ng-blur="checkphone()" />
+                                            </div>
+                                            <div id="phone-invalid" style="color:red; font-size:12px;"></div>
+                                        </div>
+
+                                        <div class="field item form-group">
+                                            <label class="col-form-label col-md-3 col-sm-3  label-align">Address<span
+												class="required">*</span></label>
+                                            <div class="col-md-6 col-sm-6">
+                                                <textarea required="required" ng-model="form.address" th:placeholder="Address" class="form-control" name="address"></textarea>
+                                            </div>
+                                        </div>
+                                        <div class="ln_solid">
+                                            <div class="form-group">
+                                                <div class="col-md-6 offset-md-3">
+                                                    <button ng-click="create()" class="btn btn-primary" ng-disabled="myForm.$invalid || myForm.$pending || editForm || invalid">Insert</button>
+                                                    <button ng-click="update(key)" class="btn btn-danger" ng-disabled="!editForm">Update</button>
+                                                    <button ng-click="delete(key)" class="btn btn-success" ng-disabled="!editForm">Delete</button>
+                                                    <button class="btn btn-outline-success" ng-click="reset()">Reset</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="">
+                    <div class="clearfix"></div>
+                    <div class="col-md-12 col-sm-12 ">
+                        <div class="x_panel">
+                            <div class="x_title">
+                                <h2>
+                                    Manager: <small>{{fullname}}</small>
+                                </h2>
+                                <ul class="nav navbar-right panel_toolbox">
+                                    <li><a class="collapse-link"><i
+											class="fa fa-chevron-up"></i></a></li>
+                                    <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i
+											class="fa fa-wrench"></i></a>
+                                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                            <a class="dropdown-item" href="#">Settings 1</a> <a class="dropdown-item" href="#">Settings 2</a>
+                                        </div>
+                                    </li>
+                                    <li><a class="close-link"><i class="fa fa-close"></i></a>
+                                    </li>
+                                </ul>
+                                <div class="clearfix"></div>
+                            </div>
+                            <div class="x_content">
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <div class="card-box table-responsive">
+                                            <table id="provider-table" class="table table-hover">
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
