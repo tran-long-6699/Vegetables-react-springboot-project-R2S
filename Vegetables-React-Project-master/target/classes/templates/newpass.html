@@ -1,0 +1,90 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<!-- Required meta tags -->
+<meta charset="utf-8">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link
+	href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,700,900&display=swap"
+	rel="stylesheet">
+<link
+	href="https://as1.ftcdn.net/jpg/02/67/54/94/500_F_267549416_zTrBC52pr6s4zmbc9UKUmZ3tEUnXXhJM.jpg"
+	rel="icon">
+<link rel="stylesheet" th:href="@{/css/fontNewpass.css}">
+
+
+<!-- Bootstrap CSS -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.0.2/css/bootstrap.min.css" integrity="sha512-usVBAd66/NpVNfBge19gws2j6JZinnca12rAe2l+d+QkLU9fiG02O1X8Q6hepIpr/EYKZvKx/I9WsnujJuOmBA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+<!-- Style -->
+<link rel="stylesheet" th:href="@{/css/forgot.css}">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/fontawesome.min.css" integrity="sha512-OdEXQYCOldjqUEsuMKsZRj93Ht23QRlhIb8E/X0sbwZhme8eUw6g8q7AdxGJKakcBbv7+/PX0Gc2btf7Ru8cZA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+<title>New Password</title>
+</head>
+<body ng-app="newpass-app" ng-controller="newpass-ctrl">
+	<div class="content">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-5 mr-auto">
+					<h3 class="mb-3">Welcome, honored customers</h3>
+					<p>Thank you for your cooperation and use of our services in the past time.</p>
+					<p>With the motto of always giving customers the best, over the years we have listened to feedback and improved to improve our quality and attitude to be able to better meet customer requirements.</p>
+					<p>We have always known that with love and trust it is our most important asset.</p>
+					<p>Once again we sincerely thank you.</p>
+					<p>Wishing you always good health and success.</p>
+				</div>
+
+
+				<div class="col-md-6">
+					<div class="box">
+						<h3 class="heading">New Password</h3>
+						<form class="mb-5 was-validated" method="post" id="contactForm"
+							name="contactForm" novalidate="">
+							<div class="field item form-group">
+								<label class="col-form-label col-md-4 col-sm-4  label-align">Password<span
+									class="required">*</span></label>
+								<div class="col-md-8 col-sm-8">
+									<input class="form-control col-sm-12" type="password" ng-blur="checkpwd()" ng-model="pwd"
+										id="password1" name="password" placeholder="New password?" autofocus="autofocus"
+										required ng-dblclick="hideshow()" />
+									<div id="pwd-invalid" style="color: red; font-size: 12px;"></div>
+								</div>
+							</div>
+
+							<div class="field item form-group">
+								<label class="col-form-label col-md-4 col-sm-4  label-align">Repeat<span
+									class="required">*</span></label>
+								<div class="col-md-8 col-sm-8">
+									<input class="form-control" type="password" name="password2" ng-blur="checkrepwd()"
+										data-validate-linked='password' required='required' id="password2"
+										placeholder="Repeat password" />
+									<div id="repwd-invalid" style="color: red; font-size: 12px;"></div>
+								</div>							
+							</div>
+							<script>
+								
+							</script>
+
+							<div class="row">
+								<div class="col-md-12">
+									<button class="btn btn-block btn-primary rounded-0 py-2 px-4" ng-click="newpass()" ng-disabled="contactForm.$invalid || invalid">Confirm</button>
+									<span class="submitting"></span>
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+	<script th:src="@{/js/jquery-3.2.1.min.js}"></script>
+	<script th:src="@{/js/popper.min.js}"></script>
+	<script th:src="@{/js/bootstrap.min.js}"></script>
+	<script th:src="@{/js/main.js}"></script>
+	<script th:src="@{/js/newpass.js}"></script>
+</body>
+</html>

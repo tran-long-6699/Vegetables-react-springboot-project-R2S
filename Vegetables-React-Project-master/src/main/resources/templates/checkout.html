@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="~{fragments/layout.html :: dynamic(~{::title},~{::body})}">
+
+<head>
+    <title>Check Out</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+</head>
+
+<body class="goto-here" ng-app="app" ng-controller="cart-ctrl">
+    <div th:hidden="true" id="user">[[${#request.remoteUser}]]</div>
+    <div class="hero-wrap hero-bread" style="background-image: url('/images/bg_1.jpg');">
+        <div class="container">
+            <div class="row no-gutters slider-text align-items-center justify-content-center">
+                <div class="col-md-9 ftco-animate text-center">
+                    <p class="breadcrumbs">
+                        <span class="mr-2"><a href="/veg/home">Home</a></span> <span>Checkout</span>
+                    </p>
+                    <h1 class="mb-0 bread">Checkout</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <section class="ftco-section">
+        <div class="container">
+            <form name="myForm" ng-controller="checkout-ctrl">
+                <div class="row justify-content-center">
+                    <div class="col-xl-7 ftco-animate">
+                        <h3 class="mb-4 billing-heading">Billing Details</h3>
+                        <div class="row align-items-end">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Full Name</label> <input type="text" ng-model="fullname" class="form-control" placeholder="Fullname?">
+                                </div>
+                            </div>
+                            <div class="w-100"></div>
+                            <!-- <div class="col-md-12">
+							<div class="form-group">
+								<label for="country">City / Province</label>
+								<div class="select-wrap">
+									<div class="icon">
+										<span class="ion-ios-arrow-down"></span>
+									</div>
+									<select name="" id="" class="form-control">
+										<option value="">France</option>
+										<option value="">Italy</option>
+										<option value="">Philippines</option>
+										<option value="">South Korea</option>
+										<option value="">Hongkong</option>
+										<option value="">Japan</option>
+									</select>
+								</div>
+							</div>
+						</div> -->
+                            <div class="w-100"></div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Street Address</label> <input type="text" class="form-control" placeholder="Address?" id="address" ng-model="address" required="required">
+                                </div>
+                            </div>
+                            <div class="w-100"></div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Phone</label> <input type="text" class="form-control" placeholder="Phone? " id="phone" ng-model="phone" required="required">
+                                </div>
+                            </div>
+                            <!-- <div class="col-md-6">
+							<div class="form-group">
+								<label for="emailaddress">Email Address</label> <input
+									type="text" class="form-control" placeholder="Address?">
+							</div>
+						</div> -->
+                            <div class="w-100"></div>
+
+                        </div>
+
+                    </div>
+                    <div class="col-xl-5">
+                        <div class="row mt-5 pt-3">
+                            <div class="col-md-12 d-flex mb-5">
+                                <div class="cart-detail cart-total p-3 p-md-4">
+                                    <h3 class="billing-heading mb-4">Cart Total</h3>
+                                    <p class="d-flex">
+                                        <span>Subtotal</span> <span id="summoney">{{cart.amount | number :0}}</span>
+                                    </p>
+                                    <p class="d-flex">
+                                        <span>Delivery</span> <span>{{costDelivery}} VNĐ</span>
+                                    </p>
+                                    <p class="d-flex">
+                                        <span>Discount</span> <span>0 VNĐ</span>
+                                    </p>
+                                    <hr>
+                                    <p class="d-flex total-price">
+                                        <span>Total</span> <span id="total" ng-model="total">{{total | number: 0}}</span>
+                                        <input type="hidden" ng-model="total" value="{{total}}" id="totalcheckout" />
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="cart-detail p-3 p-md-4">
+                                    <h3 class="billing-heading mb-4">Payment Method</h3>
+                                    <div class="form-group">
+                                        <div class="col-md-12">
+                                            <div class="radio">
+                                                <select class="form-control btn-outline-success" ng-model="modeofpayment" ng-click="cost()">
+												<option value="COD">COD</option>
+												<option value="ATM">ATM</option>
+											</select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-md-12">
+                                            <div class="checkbox">
+                                                <label><input type="checkbox" value="{{accept}}" class="mr-2" ng-model="accept" required>
+												I have read and accept the terms and conditions</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <p>
+                                        <button class="btn btn-primary py-3 px-4" ng-click="order.purchase()" ng-disabled="myForm.$invalid">Place an order</button>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- .col-md-8 -->
+                </div>
+            </form>
+        </div>
+    </section>
+</body>
+
+</html>

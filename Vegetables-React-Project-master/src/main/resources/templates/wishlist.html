@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="~{fragments/layout.html :: dynamic(~{::title},~{::body})}">
+
+<head>
+    <title>Wishlist</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+</head>
+
+<body class="goto-here" ng-app="app" ng-controller="cart-ctrl">
+    <div class="hero-wrap hero-bread" style="background-image: url('/images/bg_1.jpg');">
+        <div class="container">
+            <div class="row no-gutters slider-text align-items-center justify-content-center">
+                <div class="col-md-9 ftco-animate text-center">
+                    <p class="breadcrumbs"><span class="mr-2"><a href="/veg/home">Home</a></span> <span>Wishlist</span></p>
+                    <h1 class="mb-0 bread">My Wishlist</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <section class="ftco-section ftco-cart" ng-controller="wishlist-ctrl">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 ftco-animate">
+                    <div class="cart-list">
+                        <table class="table table-hover">
+                            <thead class="thead-primary">
+                                <tr class="text-center">
+                                    <th>Product List</th>
+                                    <th>Product Name</th>
+                                    <th>Price</th>
+                                    <th>Category</th>
+                                    <th>Measure</th>
+                                    <th>&nbsp;</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="text-center" ng-repeat="wl in wls" style="cursor: pointer;">
+                                    <td class="image-prod w-25">
+                                        <img style="width:100px; height: 100px;" ng-click="redirect(wl.productid)" class="img-thumbnail" ng-src="{{'/images/product/'+wl.products.image}}">
+                                    </td>
+
+                                    <td class="product-name" style="max-width: 15%;">
+                                        <h3>{{wl.products.productname}}</h3>
+                                        <p>{{wl.products.description}}</p>
+                                    </td>
+
+                                    <td class="price" style="max-width: 15%;">{{wl.products.priceaverage}}</td>
+
+                                    <td class="product-name" style="max-width: 15%;">
+                                        <h3>{{wl.products.category.catname}}</h3>
+                                    </td>
+
+                                    <td class="product-name" style="max-width: 15%;">{{wl.products.measure}}</td>
+                                    <td class="product-remove" ng-click="wldelete(wl.products.productid)" style="cursor: pointer;"><a><span class="ion-ios-close"></span></a></td>
+                                </tr>
+                                <!-- END TR-->
+
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+
+</html>

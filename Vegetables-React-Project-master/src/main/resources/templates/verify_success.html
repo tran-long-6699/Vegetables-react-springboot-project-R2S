@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+th:replace="~{fragments/layout.html :: dynamic(~{::title},~{::body})}">
+<head>
+<meta charset="UTF-8">
+<link href="https://as1.ftcdn.net/jpg/02/67/54/94/500_F_267549416_zTrBC52pr6s4zmbc9UKUmZ3tEUnXXhJM.jpg" rel="icon">
+
+<title>Verify Success</title>
+<link th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
+</head>
+<body>
+<div class="container text-center" th:hidden="!${signup}">
+    <h3>Congratulations, your account has been verified.</h3>
+    <h4><a th:href="@{/rcm/decided-signin}">Click here to Login</a></h4>
+</div>
+
+<div class="container text-center" th:hidden="!${forgotpwd}">
+    <h3>Congratulations, your password has been recovered.</h3><br>
+    <p>Please check mail</p>
+</div>
+</body>
+</html>

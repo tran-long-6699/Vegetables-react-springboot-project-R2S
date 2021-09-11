@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="~{fragments/layout.html :: dynamic(~{::title},~{::body})}">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Profile</title>
+    <style>
+        body {
+            margin-top: 20px;
+            background: #f8f8f8
+        }
+    </style>
+</head>
+
+<body ng-app="app" ng-controller="cart-ctrl">
+    <div class="container" ng-controller="edit-ctrl">
+        <div class="row flex-lg-nowrap">
+            <div class="col">
+                <div class="row">
+                    <div class="col mb-3">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="e-profile" th:object="${user}">
+
+                                    <ul class="nav nav-tabs">
+                                        <li class="nav-item"><a href="" class="active nav-link">My Information</a></li>
+                                    </ul>
+                                    <div class="tab-content pt-3">
+                                        <div class="tab-pane active">
+                                            <form class="form" method="post" th:action="@{/veg/editprofile/user}" name="myForm" enctype="multipart/form-data">
+                                                <div class="row">
+                                                    <div class="col-12 col-sm-auto mb-3" th:if="${oauth2}">
+                                                        <div class="mx-auto" style="width: 140px;">
+                                                            <label for="selectImg"><img th:src="*{image}" class="img-thumbnail"></label>
+                                                            <input th:hidden="true" type="file" accept="images/*" id="selectImg" name="file" />
+                                                            <input type="hidden" th:value="*{image}">
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-12 col-sm-auto mb-3" th:if="${normal}">
+                                                        <div class="mx-auto" style="width: 140px;">
+                                                            <label for="selectImg"><img th:src="@{|/images/user/*{image}|}" class="img-thumbnail"></label>
+                                                            <input type="file" accept="images/*" th:hidden="true" id="selectImg" name="file" ng-model="image" />
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col d-flex flex-column flex-sm-row justify-content-between mb-3">
+                                                        <div class="text-center text-sm-left mb-2 mb-sm-0">
+                                                            <h4 class="pt-sm-2 pb-1 mb-0 text-nowrap">[[*{fullname}]]</h4>
+                                                            <p class="mb-0">[[*{username}]]</p>
+                                                        </div>
+                                                        <div class="text-center text-sm-right">
+                                                            <th:block th:each="r : *{roles}">
+                                                                <span class="badge badge-secondary">[[${r.roleid}]]</span>
+                                                            </th:block>
+                                                            <div class="text-muted">
+                                                                <small>Joined [[*{createdate}]]</small>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col">
+                                                        <div class="row">
+                                                            <div class="col">
+                                                                <div class="form-group">
+                                                                    <label>Full Name</label> <input class="form-control" type="text" th:field="*{fullname}" ng-blur="checkfullname()" placeholder="Your name?" required="required" id="fullname" th:value="*{fullname}">
+                                                                </div>
+                                                                <div id="fullname-invalid" style="color:red; font-size: 12px;"></div>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="row">
+                                                            <div class="col mb-3">
+                                                                <div class="form-group">
+                                                                    <label>Gender</label> <select class="form-control" th:field="*{guestinfor.gender}">
+																		<option value="true"
+																			th:selected="*{guestinfor.gender}">Male</option>
+																		<option value="false"
+																			th:selected="*{!guestinfor.gender}">Female</option>
+																	</select>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="row">
+                                                            <div class="col">
+                                                                <div class="form-group">
+                                                                    <label>Phone</label> <input class="form-control" id="phone" type="text" th:field="*{guestinfor.phone}" ng-blur="checkphone()" placeholder="Your phone?" required="required" th:value="*{guestinfor.phone}">
+                                                                </div>
+                                                                <div id="phone-invalid" style="color:red; font-size: 12px;"></div>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="row">
+                                                            <div class="col">
+                                                                <div class="form-group">
+                                                                    <label>Address</label> <input class="form-control" id="address" type="text" th:field="*{guestinfor.address}" placeholder="Your address?" required="required" ng-blur="checkaddress()" th:value="*{guestinfor.address}">
+                                                                </div>
+                                                                <div id="address-invalid" style="color:red; font-size: 12px;"></div>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="row">
+                                                            <div class="col">
+                                                                <div class="form-group">
+                                                                    <label>Birthday</label> <input class="form-control" ng-blur="checkdate()" type="date" th:field="*{guestinfor.birthday}" id="date" required="required" th:value="*{guestinfor.birthday}">
+                                                                </div>
+                                                                <div id="date-invalid" style="color:red; font-size: 12px;"></div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <span class="btn btn-primary mybtn" ng-click="change()" ng-hide="!visible" style="color:black">Change password?</span>
+                                                <span class="btn btn-primary mybtn" ng-click="dontchange()" ng-hide="visible" style="color:black">Don't change?</span>
+                                                <div class="row" id="changepwd" ng-hide="visible">
+                                                    <div class="col-12 col-sm-6 mb-3">
+                                                        <div class="mb-2">
+                                                            <b>Change Password</b>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col">
+                                                                <div class="form-group">
+                                                                    <label>New Password</label> <input class="form-control" th:field="*{password}" id="pwd" ng-blur="checkpwd()" type="password" placeholder="••••••">
+                                                                </div>
+                                                                <div id="pwd-invalid" style="color:red; font-size: 12px;"></div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col">
+                                                                <div class="form-group">
+                                                                    <label>Confirm <span class="d-none d-xl-inline">Password</span></label>
+                                                                    <input class="form-control" type="password" id="repwd" ng-blur="checkvalpwd()" placeholder="••••••">
+                                                                </div>
+                                                                <div id="repwd-invalid" style="color:red; font-size: 12px;"></div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col d-flex justify-content-end">
+                                                        <button class="btn btn-primary" ng-disabled="myForm.$invalid || invalid">Save Changes</button>
+                                                    </div>
+                                                </div>
+                                            </form>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>

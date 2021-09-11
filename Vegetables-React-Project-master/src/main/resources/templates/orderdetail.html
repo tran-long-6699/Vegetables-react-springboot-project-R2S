@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="~{fragments/layout.html :: dynamic(~{::title},~{::body})}">
+
+<head>
+    <title>Order Detail</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <style>
+        .table-hover tbody tr:hover {
+            background: #CCFF99;
+        }
+    </style>
+</head>
+
+<body class="goto-here" ng-app="app" ng-controller="cart-ctrl">
+    <div class="hero-wrap hero-bread" style="background-image: url('/images/bg_1.jpg');">
+        <div class="container">
+            <div class="row no-gutters slider-text align-items-center justify-content-center">
+                <div class="col-md-9 ftco-animate text-center">
+                    <p class="breadcrumbs">
+                        <span class="mr-2"><a href="/veg/home">Home</a></span> <span>Shop</span>
+                    </p>
+                    <h1 class="mb-0 bread">My Orders</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+    <form class="ftco-section ftco-cart" ng-controller="order-ctrl">
+        <section>
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12 ftco-animate">
+                        <div class="cart-list">
+                            <table class="table table-hover" ng-show="main">
+                                <thead class="thead-primary">
+                                    <tr class="text-center">
+                                        <th>Invoice Date</th>
+                                        <th>Order Id</th>
+                                        <th>Phone</th>
+                                        <th>Address</th>
+                                        <th>Total</th>
+                                        <th>Payment</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <th:block th:each="o : ${orders}">
+                                        <tr class="text-center" th:attr="ng-click='check(\''+${o.id}+'\');'">
+
+                                            <td class="price">[[${o.invoicedate}]]</td>
+                                            <td class="price">[[${o.id}]]</td>
+                                            <td class="price">[[${o.phone}]]</td>
+                                            <td class="price">[[${o.address}]]</td>
+                                            <td class="total">[[${o.total}]]</td>
+                                            <td class="total">[[${o.modeofpayment}]]</td>
+
+                                        </tr>
+                                    </th:block>
+                                </tbody>
+                            </table>
+
+                            <table class="table table-hover" ng-show="!main">
+                                <thead class="thead-primary">
+                                    <tr class="text-center">
+                                        <th style="max-width: 15%">Image</th>
+                                        <th>Guest</th>
+                                        <th>Name</th>
+                                        <th>Size</th>
+                                        <th>Quantity</th>
+                                        <th>Price</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr class="text-center" th:attr="ng-click='change();'" ng-repeat="(key , o) in listOrder">
+                                        <td class="price"><img ng-src="/images/product/{{o.products.image}}" style="width:150px; height: 150px;" class="img-thumbnail" /></td>
+                                        <td class="price">{{o.orders.fullname}}</td>
+                                        <td class="price">{{o.products.productname}}</td>
+                                        <td class="price">{{o.sizename}}</td>
+                                        <td class="price">{{o.quantity}}</td>
+                                        <td class="price">{{o.products.priceaverage}}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </form>
+</body>
+
+</html>

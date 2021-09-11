@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+th:replace="~{fragments/layout.html :: dynamic(~{::title},~{::body})}">
+<head>
+<meta charset="UTF-8">
+<link href="https://as1.ftcdn.net/jpg/02/67/54/94/500_F_267549416_zTrBC52pr6s4zmbc9UKUmZ3tEUnXXhJM.jpg" rel="icon">
+
+<title>Signup Success</title>
+<link th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
+</head>
+<body>
+	
+		<div class="container text-center" th:hidden="!${signup}">
+			<h3>You have signed up successfully!</h3>
+			<p>Please check your email to verify your account.</p>
+			<h4>
+				<a th:href="@{/veg/login}">Click here to Login</a>
+			</h4>
+		</div>
+		
+		<div class="container text-center" th:hidden="!${forgotpwd}">
+			<h3>You have recovered successfully!</h3>
+			<p>Please check your email to verify your account.</p>
+			<h4>
+				<a th:href="@{/veg/login}">Click here to Login</a>
+			</h4>
+		</div>
+	
+</body>
+</html>
